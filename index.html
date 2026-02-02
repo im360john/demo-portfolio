@@ -3,17 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <title>My Site</title>
+    <meta name="description" content="Live Bitcoin Price Ticker with real-time updates">
+    <title>Bitcoin Live Ticker</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <section class="hero">
-            <h1>Welcome</h1>
-            <p>This is a starter template</p>
-        </section>
-    </main>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg class="bitcoin-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="15" fill="#F7931A"/>
+                    <path d="M22.8 14.5c.3-2-1.2-3-3.2-3.7l.7-2.7-1.6-.4-.6 2.6c-.4-.1-.9-.2-1.3-.3l.6-2.6-1.6-.4-.7 2.7c-.3-.1-.6-.2-1-.3l-2.2-.5-.5 1.8s1.2.3 1.2.3c.7.2.8.6.8 1l-.8 3.2c.1 0 .1.1.2.1l-.2-.1-1.1 4.5c-.1.2-.3.6-.9.4 0 0-1.2-.3-1.2-.3l-.8 1.9 2.1.5c.4.1.8.2 1.1.3l-.7 2.8 1.6.4.7-2.7c.4.1.9.2 1.3.3l-.7 2.7 1.6.4.7-2.8c2.9.5 5-.3 5.9-2.3.7-1.7 0-2.7-1.2-3.3 1-.2 1.7-.8 1.9-2.1zm-3.4 4.6c-.5 2-3.9.9-5 .6l.9-3.6c1.1.3 4.6.9 4.1 3zm.5-4.7c-.5 1.8-3.2.9-4.1.7l.8-3.2c.9.2 3.8.7 3.3 2.5z" fill="white"/>
+                </svg>
+                <h1>Bitcoin Live Ticker</h1>
+            </div>
+            <div class="last-updated">
+                Last updated: <span id="last-updated">--:--:--</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="price-card glass">
+                <div class="price-label">Current Price</div>
+                <div class="price-value" id="btc-price">$--,---.--</div>
+                <div class="price-change" id="price-change">
+                    <span class="change-indicator">--</span>
+                    <span class="change-percent">-.--%</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card glass">
+                    <div class="stat-label">24h High</div>
+                    <div class="stat-value" id="high-24h">$--,---.--</div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-label">24h Low</div>
+                    <div class="stat-value" id="low-24h">$--,---.--</div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-label">Market Cap</div>
+                    <div class="stat-value" id="market-cap">$---.--B</div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-label">24h Volume</div>
+                    <div class="stat-value" id="volume">$---.--B</div>
+                </div>
+            </div>
+
+            <div class="chart-container glass">
+                <div class="chart-header">
+                    <h2>Price History (24h)</h2>
+                    <div class="timeframe">Updates every 5 min</div>
+                </div>
+                <canvas id="price-chart" width="800" height="300"></canvas>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Data from CoinGecko API • Auto-refreshes every 5 minutes</p>
+        </footer>
+    </div>
+
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        <p>Loading Bitcoin data...</p>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
